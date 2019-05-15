@@ -38,7 +38,7 @@
                                     <v-list-tile-sub-title
                                         class="caption grey--text"
                                     >
-                                        Created on: {{ item[0].createdOn }} ({{ item[0].buildSeconds }} seconds)
+                                        Created: {{ item[0].createdOn }} (Runtime: {{ item[0].buildSeconds }} seconds)
                                     </v-list-tile-sub-title>
                                 </v-list-tile-content>
                             </v-layout>
@@ -114,6 +114,7 @@ export default {
         return {
             isReady: false,
             searchKey: '',
+            timer: ''
         };
     },
     components: {
@@ -131,6 +132,8 @@ export default {
         this.isReady = false;
         await this.$store.dispatch(GET_PIPELINE_STATUS);
         this.isReady = true;
+        const REFRESH_INTERVAL_SEC = 10;
+        this.timer = setInterval(this.refreshClick, REFRESH_INTERVAL_SEC * 1000);
     },
     methods: {
         async refreshClick() {
@@ -139,6 +142,9 @@ export default {
             this.isReady = true;
         },
     },
+    beforeDestroy() {
+      clearInterval(this.timer)
+    }
 };
 
 </script>

@@ -2,4 +2,7 @@ module.exports = {
     publicPath: process.env.NODE_ENV === 'production'
         ? '/bitbucket/'
         : '/',
+    devServer: {
+        disableHostCheck: true
+    }
 };

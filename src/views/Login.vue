@@ -47,7 +47,7 @@ export default {
     methods: {
         async loginClick() {
             const link = await this.$store.dispatch(IMPLICIT_GRANT_LINK);
-
+            console.error(link);
             window.location.href = link;
         },
     },

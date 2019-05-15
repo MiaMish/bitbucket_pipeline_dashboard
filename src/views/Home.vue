@@ -10,7 +10,7 @@
             ></v-text-field>
             <v-list two-line>
                 <v-subheader>
-                    There are {{ repositories.length }} repositories,select the interested repositories for pipeline status and click NEXT at the bottom of the page
+                    There are {{ repositories.length }} repositories, select the repos for pipeline status and click NEXT at the bottom of the page
                 </v-subheader>
                 <template v-for="(item, index) in repositories">
                     <v-list-tile
@@ -26,7 +26,7 @@
                             @click="toggleClick(item.fullName)">
                             <v-list-tile-title>{{ item.fullName }}</v-list-tile-title>
                             <v-list-tile-sub-title>
-                                Last updated {{ item.updatedOnFromNow }}
+                                Last updated {{ item.updatedOn }}
                             </v-list-tile-sub-title>
                         </v-list-tile-content>
                         <v-list-tile-action>
@@ -77,7 +77,7 @@ export default {
     },
     computed: {
         repositories() {
-            return this.$store.getters.repositories
+            return this.$store.state.bitbucket.repositories
                 .filter(({ name }) => name
                     .toLocaleLowerCase()
                     .includes(this.searchKey.toLocaleLowerCase()));
