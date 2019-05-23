@@ -132,7 +132,7 @@ export default {
         this.isReady = false;
         await this.$store.dispatch(GET_PIPELINE_STATUS);
         this.isReady = true;
-        const REFRESH_INTERVAL_SEC = 10;
+        const REFRESH_INTERVAL_SEC = 60;
         this.timer = setInterval(this.refreshClick, REFRESH_INTERVAL_SEC * 1000);
     },
     methods: {
